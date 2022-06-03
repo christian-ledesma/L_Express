@@ -1,5 +1,7 @@
-﻿using LExpress.Api.Data;
+﻿using Core.Entities;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace LExpress.Api.Controllers
 {
@@ -13,16 +15,18 @@ namespace LExpress.Api.Controllers
             _context = context;
         }
         [HttpGet]
-        public string GetProducts()
+        public async Task<ActionResult<List<Product>>> GetProducts()
         {
-            return "this is a list of products";
+            var response = await _context.Products.ToListAsync();
+            return response;
         }
 
         [HttpGet]
         [Route("{id}")]
-        public string GetProduct(int id)
+        public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            return "this is a single products";
+            var response = await _context.Products.FindAsync(id);
+            return response;
         }
     }
 }
