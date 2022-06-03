@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LExpress.Api.Data.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20220602145922_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20220602223220_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

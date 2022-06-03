@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LExpress.Api.Data;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LExpress.Api.Controllers
 {
@@ -6,6 +7,11 @@ namespace LExpress.Api.Controllers
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
+        private readonly StoreContext _context;
+        public ProductsController(StoreContext context)
+        {
+            _context = context;
+        }
         [HttpGet]
         public string GetProducts()
         {
