@@ -1,7 +1,6 @@
 ﻿using Core.Entities;
-using Infrastructure.Data;
+using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace LExpress.Api.Controllers
 {
@@ -9,23 +8,24 @@ namespace LExpress.Api.Controllers
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
-        private readonly StoreContext _context;
-        public ProductsController(StoreContext context)
+        private readonly IProductRepository _productRepository;
+        public ProductsController(IProductRepository productRepository)
         {
-            _context = context;
+            _productRepository = productRepository;
         }
+
         [HttpGet]
         public async Task<ActionResult<List<Product>>> GetProducts()
         {
-            var response = await _context.Products.ToListAsync();
-            return response;
+            var response = await _productRepository.GetAllAsync();
+            return Ok(response);
         }
 
         [HttpGet]
         [Route("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            var response = await _context.Products.FindAsync(id);
+            var response = await _productRepository.GetByIdAsync(id);
             return response;
         }
     }
