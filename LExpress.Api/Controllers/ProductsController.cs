@@ -28,5 +28,21 @@ namespace LExpress.Api.Controllers
             var response = await _productRepository.GetByIdAsync(id);
             return response;
         }
+
+        [HttpGet]
+        [Route("brands")]
+        public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetBrands()
+        {
+            var response = await _productRepository.GetBrandsAsync();
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("types")]
+        public async Task<ActionResult<IReadOnlyList<ProductType>>> GetTypes()
+        {
+            var response = await _productRepository.GetTypesAsync();
+            return Ok(response);
+        }
     }
 }

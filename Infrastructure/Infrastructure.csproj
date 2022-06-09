@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
 
 	<ItemGroup>
@@ -12,6 +11,10 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Core\Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Data\SeedData\" />
 	</ItemGroup>
 
 </Project>
