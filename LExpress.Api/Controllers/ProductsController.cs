@@ -8,16 +8,23 @@ namespace LExpress.Api.Controllers
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
-        private readonly IProductRepository _productRepository;
-        public ProductsController(IProductRepository productRepository)
+        private readonly IGenericRepository<Product> _productsRepository;
+        private readonly IGenericRepository<ProductBrand> _brandsRepository;
+        private readonly IGenericRepository<ProductType> _typesRepository;
+
+        public ProductsController(IGenericRepository<Product> productsRepository,
+                                  IGenericRepository<ProductBrand> brandsRepository,
+                                  IGenericRepository<ProductType> typesRepository)
         {
-            _productRepository = productRepository;
+            _productsRepository = productsRepository;
+            _brandsRepository = brandsRepository;
+            _typesRepository = typesRepository;
         }
 
         [HttpGet]
         public async Task<ActionResult<List<Product>>> GetProducts()
         {
-            var response = await _productRepository.GetAllAsync();
+            var response = await _productsRepository.GetAllAsync();
             return Ok(response);
         }
 
@@ -25,7 +32,7 @@ namespace LExpress.Api.Controllers
         [Route("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            var response = await _productRepository.GetByIdAsync(id);
+            var response = await _productsRepository.GetByIdAsync(id);
             return response;
         }
 
@@ -33,7 +40,7 @@ namespace LExpress.Api.Controllers
         [Route("brands")]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetBrands()
         {
-            var response = await _productRepository.GetBrandsAsync();
+            var response = await _brandsRepository.GetAllAsync();
             return Ok(response);
         }
 
@@ -41,7 +48,7 @@ namespace LExpress.Api.Controllers
         [Route("types")]
         public async Task<ActionResult<IReadOnlyList<ProductType>>> GetTypes()
         {
-            var response = await _productRepository.GetTypesAsync();
+            var response = await _typesRepository.GetAllAsync();
             return Ok(response);
         }
     }
