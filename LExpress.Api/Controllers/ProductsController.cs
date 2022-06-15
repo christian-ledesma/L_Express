@@ -1,5 +1,6 @@
 ﻿using Core.Entities;
 using Core.Interfaces;
+using Core.Specifications;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LExpress.Api.Controllers
@@ -24,7 +25,8 @@ namespace LExpress.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Product>>> GetProducts()
         {
-            var response = await _productsRepository.GetAllAsync();
+            var spec = new ProductsWithTypesAndBrandsSpecification();
+            var response = await _productsRepository.ListAsync(spec);
             return Ok(response);
         }
 
@@ -32,7 +34,8 @@ namespace LExpress.Api.Controllers
         [Route("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            var response = await _productsRepository.GetByIdAsync(id);
+            var spec = new ProductsWithTypesAndBrandsSpecification(id);
+            var response = await _productsRepository.GetEntityWithSpecAsync(spec);
             return response;
         }
 

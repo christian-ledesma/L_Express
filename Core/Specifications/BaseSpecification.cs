@@ -9,7 +9,12 @@ namespace Core.Specifications
 {
     public class BaseSpecification<T> : ISpecification<T>
     {
-        public BaseSpecification(Expression<Func<T, bool>> criteria, List<Expression<Func<T, object>>> includes)
+        public BaseSpecification()
+        {
+
+        }
+
+        public BaseSpecification(Expression<Func<T, bool>> criteria)
         {
             Criteria = criteria ?? throw new ArgumentNullException(nameof(criteria));
         }
