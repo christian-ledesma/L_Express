@@ -28,20 +28,12 @@ namespace LExpress.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<ProductGetDto>>> GetProducts()
+        public async Task<ActionResult<IReadOnlyList<ProductGetDto>>> GetProducts()
         {
             var spec = new ProductsWithTypesAndBrandsSpecification();
             var products = await _productsRepository.ListAsync(spec);
-            return products.Select(response => new ProductGetDto
-            {
-                Id = response.Id,
-                Name = response.Name,
-                Description = response.Description,
-                Price = response.Price,
-                PictureUrl = response.PictureUrl,
-                ProductBrand = response.ProductBrand.Name,
-                ProductType = response.ProductType.Name
-            }).ToList();
+            var response = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductGetDto>>(products);
+            return Ok(response);
         }
 
         [HttpGet]
@@ -49,9 +41,9 @@ namespace LExpress.Api.Controllers
         public async Task<ActionResult<ProductGetDto>> GetProduct(int id)
         {
             var spec = new ProductsWithTypesAndBrandsSpecification(id);
-            var response = await _productsRepository.GetEntityWithSpecAsync(spec);
-            var product = _mapper.Map<ProductGetDto>(response);
-            return product;
+            var product = await _productsRepository.GetEntityWithSpecAsync(spec);
+            var response = _mapper.Map<ProductGetDto>(product);
+            return response;
         }
 
         [HttpGet]
