@@ -3,13 +3,12 @@ using Core.Entities;
 using Core.Interfaces;
 using Core.Specifications;
 using LExpress.Api.DTOs.Product;
+using LExpress.Api.Errors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LExpress.Api.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class ProductsController : ControllerBase
+    public class ProductsController : BaseController
     {
         private readonly IGenericRepository<Product> _productsRepository;
         private readonly IGenericRepository<ProductBrand> _brandsRepository;
@@ -38,11 +37,16 @@ namespace LExpress.Api.Controllers
 
         [HttpGet]
         [Route("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ProductGetDto>> GetProduct(int id)
         {
             var spec = new ProductsWithTypesAndBrandsSpecification(id);
             var product = await _productsRepository.GetEntityWithSpecAsync(spec);
-            var response = _mapper.Map<ProductGetDto>(product);
+
+            if (product == null) return NotFound(new ApiResponse(404));
+
+            var response = _mapper.Map<Product, ProductGetDto>(product);
             return response;
         }
 
