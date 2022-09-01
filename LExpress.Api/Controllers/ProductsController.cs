@@ -27,9 +27,9 @@ namespace LExpress.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<ProductGetDto>>> GetProducts()
+        public async Task<ActionResult<IReadOnlyList<ProductGetDto>>> GetProducts(string sort)
         {
-            var spec = new ProductsWithTypesAndBrandsSpecification();
+            var spec = new ProductsWithTypesAndBrandsSpecification(sort);
             var products = await _productsRepository.ListAsync(spec);
             var response = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductGetDto>>(products);
             return Ok(response);
