@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using LExpress.Api.DTOs.Product;
 using LExpress.Api.Errors;
+using LExpress.Api.Helpers;
 using LExpress.Core.Entities;
 using LExpress.Core.Interfaces;
 using LExpress.Core.Specifications;
@@ -27,11 +28,14 @@ namespace LExpress.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<ProductGetDto>>> GetProducts(string sort)
+        public async Task<ActionResult<Pagination<ProductGetDto>>> GetProducts([FromQuery] ProductSpecParams productSpecParams)
         {
-            var spec = new ProductsWithTypesAndBrandsSpecification(sort);
-            var products = await _productsRepository.ListAsync(spec);
-            var response = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductGetDto>>(products);
+            var spec = new ProductsWithTypesAndBrandsSpecification(productSpecParams);
+            var countSpec = new ProductWithFiltersForCountSpecification(productSpecParams);
+            var totalItems = await _productsRepository.CountAsync(countSpec);
+            var productList = await _productsRepository.ListAsync(spec);
+            var products = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductGetDto>>(productList);
+            var response = new Pagination<ProductGetDto>(productSpecParams.PageIndex, productSpecParams.PageSize, totalItems, products);
             return Ok(response);
         }
 

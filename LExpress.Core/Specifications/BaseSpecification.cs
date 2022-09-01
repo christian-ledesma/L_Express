@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
 
 namespace LExpress.Core.Specifications
 {
@@ -27,6 +22,12 @@ namespace LExpress.Core.Specifications
 
         public Expression<Func<T, object>> OrderByDescending { get; private set; }
 
+        public int Take { get; private set; }
+
+        public int Skip { get; private set; }
+
+        public bool IsPaginEnabled { get; private set; }
+
         protected void AddInclude(Expression<Func<T, object>> expression)
         {
             Includes.Add(expression);
@@ -40,6 +41,13 @@ namespace LExpress.Core.Specifications
         protected void AddOrderByDescending(Expression<Func<T, object>> orderByExpression)
         {
             OrderByDescending = orderByExpression;
+        }
+
+        protected void ApplyPaging(int skip, int take)
+        {
+            Skip = skip;
+            Take = take;
+            IsPaginEnabled = true;
         }
     }
 }
