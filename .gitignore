@@ -454,3 +454,9 @@ $RECYCLE.BIN/
 !.vscode/extensions.json
 
 *.db*
+
+LExpress.Web/.angular/cache/
+LExpress.Web/connect.lock
+LExpress.Web/libpeerconnection.log
+LExpress.Web/testem.log
+LExpress.Web/typings
