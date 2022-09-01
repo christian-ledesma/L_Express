@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Core.Entities;
 using LExpress.Api.DTOs.Product;
+using LExpress.Core.Entities;
 
 namespace LExpress.Api.Helpers
 {

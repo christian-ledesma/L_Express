@@ -1,8 +1,12 @@
-﻿using Core.Entities;
-using Core.Specifications;
+﻿using LExpress.Core.Entities;
+using LExpress.Core.Specifications;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Core.Interfaces
+namespace LExpress.Core.Interfaces
 {
     public interface IGenericRepository<T> where T : BaseEntity
     {

@@ -1,4 +1,4 @@
-﻿using Core.Entities;
+﻿using LExpress.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 

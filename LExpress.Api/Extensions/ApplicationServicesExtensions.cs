@@ -1,7 +1,7 @@
-﻿using Core.Interfaces;
-using Infrastructure.Data;
+﻿using Infrastructure.Data;
 using LExpress.Api.Errors;
 using LExpress.Api.Helpers;
+using LExpress.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LExpress.Api.Extensions

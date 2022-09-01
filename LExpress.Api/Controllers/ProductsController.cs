@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Core.Entities;
-using Core.Interfaces;
-using Core.Specifications;
 using LExpress.Api.DTOs.Product;
 using LExpress.Api.Errors;
+using LExpress.Core.Entities;
+using LExpress.Core.Interfaces;
+using LExpress.Core.Specifications;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LExpress.Api.Controllers

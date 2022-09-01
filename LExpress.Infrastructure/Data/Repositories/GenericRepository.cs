@@ -1,6 +1,6 @@
-﻿using Core.Entities;
-using Core.Interfaces;
-using Core.Specifications;
+﻿using LExpress.Core.Entities;
+using LExpress.Core.Interfaces;
+using LExpress.Core.Specifications;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data
