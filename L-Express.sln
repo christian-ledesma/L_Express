@@ -8,9 +8,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LExpress.Api", "LExpress.Ap
 		{69082C0A-6A91-4359-9DB3-D6F15E1027AD} = {69082C0A-6A91-4359-9DB3-D6F15E1027AD}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{3335AD7B-5066-4EB7-A0F6-58A0BB24A08C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LExpress.Core", "Core\LExpress.Core.csproj", "{3335AD7B-5066-4EB7-A0F6-58A0BB24A08C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{69082C0A-6A91-4359-9DB3-D6F15E1027AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LExpress.Infrastructure", "Infrastructure\LExpress.Infrastructure.csproj", "{69082C0A-6A91-4359-9DB3-D6F15E1027AD}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3335AD7B-5066-4EB7-A0F6-58A0BB24A08C} = {3335AD7B-5066-4EB7-A0F6-58A0BB24A08C}
 	EndProjectSection
